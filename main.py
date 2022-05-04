@@ -22,7 +22,7 @@ RATE = int(parameters[0])  # sample rate
 CHUNK = int(parameters[1])  # buffer size
 print(str(RATE) + ' ' + str(CHUNK))
 FORMAT = pyaudio.paInt16  # specifies bit depth (16-bit)
-CHANNELS = 2  # mono audio
+CHANNELS = 2  # stereo audio
 latency_in_milliseconds = int(parameters[2])
 LATENCY = round((latency_in_milliseconds/1000) *
                 (RATE/CHUNK))  # latency in buffers
@@ -42,7 +42,7 @@ LENGTH = 0
 
 debounce_length = 0.1  # length in seconds of button debounce period
 
-silence = np.zeros([CHUNK], dtype=np.int16)  # a buffer containing silence
+silence = np.zeros([CHUNK * 2], dtype=np.int16)  # a buffer containing silence
 
 # mixed output (sum of audio from tracks) is multiplied by output_volume before being played.
 # This is updated dynamically as max peak in resultant audio changes
