@@ -49,8 +49,8 @@ silence = np.zeros([CHUNK * 2], dtype=np.int16)  # a buffer containing silence
 output_volume = np.float16(1.0)
 
 # multiplying by upramp and downramp gives fade-in and fade-out
-downramp = np.linspace(1, 0, CHUNK)
-upramp = np.linspace(0, 1, CHUNK)
+downramp = np.linspace(1, 0, CHUNK * 2)
+upramp = np.linspace(0, 1, CHUNK * 2)
 # fadein() applies fade-in to a buffer
 
 
