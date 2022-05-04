@@ -58,8 +58,8 @@ pa = pyaudio.PyAudio()
 
 def looping_callback(in_data, frame_count, time_info, status):
     global LENGTH
-    LENGTH = LENGTH + 1
     print(LENGTH)
+    LENGTH = LENGTH + 1
     return (silence, pyaudio.paContinue)
 
 
