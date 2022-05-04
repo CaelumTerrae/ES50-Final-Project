@@ -76,19 +76,8 @@ stream = pa.open(
     stream_callback=looping_callback
 )
 print("recording started")
-Recordframes = []
 
-for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
-    data = stream.read(CHUNK, exception_on_overflow=False)
-    Recordframes.append(data)
+time.sleep(10)
 print("recording stopped")
 
-stream.stop_stream()
-stream.close()
 pa.terminate()
-waveFile = wave.open(WAVE_OUTPUT_FILENAME, 'wb')
-waveFile.setnchannels(CHANNELS)
-waveFile.setsampwidth(pa.get_sample_size(FORMAT))
-waveFile.setframerate(RATE)
-waveFile.writeframes(b''.join(Recordframes))
-waveFile.close()
