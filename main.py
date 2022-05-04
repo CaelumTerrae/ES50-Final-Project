@@ -314,6 +314,7 @@ def looping_callback(in_data, frame_count, time_info, status):
                 setup_isrecording = False
                 return(silence, pyaudio.paContinue)
             # otherwise append incoming audio to master loop, increment LENGTH and continue
+            print("reached looping callback")
             loops[0].add_buffer(current_rec_buffer)
             LENGTH = LENGTH + 1
             return(silence, pyaudio.paContinue)
