@@ -182,7 +182,7 @@ class audioloop:
     # clear() clears the loop so that a new loop of the same or a different length can be recorded on the track
 
     def clear(self):
-        self.audio = np.zeros([MAXLENGTH, CHUNK], dtype=np.int16)
+        self.audio = np.zeros([MAXLENGTH, CHUNK * 2], dtype=np.int16)
         self.initialized = False
         self.isplaying = False
         self.isrecording = False
