@@ -72,7 +72,7 @@ class audioloop:
         self.length_factor = 1
         self.length = 0
         # self.audio is a 2D array of samples, each row is a buffer's worth of audio
-        self.audio = np.zeros([MAXLENGTH, CHUNK], dtype=np.int16)
+        self.audio = np.zeros([MAXLENGTH, CHUNK * 2], dtype=np.int16)
         self.readp = 0
         self.writep = 0
         self.isrecording = False
