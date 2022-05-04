@@ -116,7 +116,8 @@ class audioloop:
         fadeout(self.audio[self.last_buffer_recorded])
         preceding_buffer_copy = np.copy(self.preceding_buffer)
         fadein(preceding_buffer_copy)
-        self.audio[self.length - 1, :] += preceding_buffer_copy[:]
+        self.audio[self.length - 1,
+                   :] += (preceding_buffer_copy[:] + preceding_buffer_copy[:])
         # audio should be written ahead of where it is being read from, to compensate for input+output latency
         self.readp = (self.writep + LATENCY) % self.length
         self.initialized = True
