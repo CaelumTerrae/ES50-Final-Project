@@ -55,6 +55,14 @@ def fadeout(buffer):
 
 pa = pyaudio.PyAudio()
 
+
+def looping_callback(in_data, frame_count, time_info, status):
+    global LENGTH
+    LENGTH = LENGTH + 1
+    print(LENGTH)
+    return (silence, pyaudio.paContinue)
+
+
 stream = pa.open(
     format=FORMAT,
     channels=CHANNELS,
@@ -65,6 +73,7 @@ stream = pa.open(
     output_device_index=OUTDEVICE,
     frames_per_buffer=CHUNK,
     start=True,
+    stream_callback=looping_callback
 )
 print("recording started")
 Recordframes = []
