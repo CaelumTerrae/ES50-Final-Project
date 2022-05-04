@@ -79,7 +79,7 @@ class audioloop:
         self.isplaying = False
         self.iswaiting = False
         self.last_buffer_recorded = 0  # index of last buffer added
-        self.preceding_buffer = np.zeros([CHUNK], dtype=np.int16)
+        self.preceding_buffer = np.zeros([CHUNK * 2], dtype=np.int16)
         # dub ratio must be reduced with each overdub to keep all overdubs at the same level while preventing clipping.
         # first overdub is attenuated by a factor of 0.9, second by 0.81, etc.
         # each time the existing audio is attenuated by a factor of 0.9
@@ -192,7 +192,7 @@ class audioloop:
         self.readp = 0
         self.writep = 0
         self.last_buffer_recorded = 0
-        self.preceding_buffer = np.zeros([CHUNK], dtype=np.int16)
+        self.preceding_buffer = np.zeros([CHUNK * 2], dtype=np.int16)
         self.rec_just_pressed = False
         self.play_just_pressed = False
 
@@ -216,7 +216,7 @@ class audioloop:
 loops = (audioloop(), audioloop(), audioloop(), audioloop())
 
 # while looping, prev_rec_buffer keeps track of the audio buffer recorded before the current one
-prev_rec_buffer = np.zeros([CHUNK], dtype=np.int16)
+prev_rec_buffer = np.zeros([CHUNK * 2], dtype=np.int16)
 
 # update output volume to prevent mixing distortion due to sample overflow
 
@@ -293,7 +293,7 @@ setup_isrecording = False  # set to True when track 1 recording button is first 
 setup_donerecording = False  # set to true when first track 1 recording is done
 
 # buffer to hold mixed audio from all 4 tracks
-play_buffer = np.zeros([CHUNK], dtype=np.int16)
+play_buffer = np.zeros([CHUNK * 2], dtype=np.int16)
 
 
 def looping_callback(in_data, frame_count, time_info, status):
